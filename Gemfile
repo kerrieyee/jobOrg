@@ -19,7 +19,6 @@ group :assets do
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
-
 group :development, :test do
   gem 'pg'
   gem 'rspec-rails'
