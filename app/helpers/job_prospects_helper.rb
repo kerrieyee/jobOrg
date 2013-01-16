@@ -1,0 +1,2 @@
+module JobProspectsHelper
+end
