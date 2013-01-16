@@ -1,7 +1,10 @@
 JobOrg::Application.routes.draw do
   devise_for :users
 
-  root :to => "job_description#index"
+  root :to => "job_prospects#index"
+  resources :job_prospects do
+    resources :events
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
