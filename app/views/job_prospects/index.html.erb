@@ -1,0 +1,20 @@
+<h1><%= current_user.name%>'s Job Prospects </h1>
+<div class="alert alert-success create-job-prospect-success" style = "display: none;"></div>
+<div class="alert alert-warning delete-job-prospect-success" style = "display: none;"></div>
+
+<%=render 'form'%>
+
+<table class="table" id="job_prospects_list">
+	<thead>
+		<tr>
+			<th> Company </th>
+			<th> Position Applied For</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @job_prospects.each do |job_prospect| %>
+			<%= render job_prospect %>
+		<%end%>
+	</tbody>
+</table>
+

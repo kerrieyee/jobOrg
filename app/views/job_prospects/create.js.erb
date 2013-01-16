@@ -1,0 +1,12 @@
+
+$('table#job_prospects_list tbody tr:last').after("<%= j render @job_prospect%>");
+$('input#job_prospect_company').val("");
+$('input#job_prospect_position').val("");
+
+var close = '<a class = "close" data-dismiss="alert">&#215;</a>';
+
+$('.create-job-prospect-success').html(close + '\n Job Prospect has been successfully added!');
+$('.create-job-prospect-success').fadeIn('slow');
+$('.create-job-prospect-success').fadeOut('slow');
+
+

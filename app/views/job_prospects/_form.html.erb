@@ -1,0 +1,15 @@
+<%= form_for @job_prospect, remote: true do |f| %>
+	<div class="control-group">
+		<%=f.label :company%>
+		<div class="controls">
+			<%=f.text_field :company%>
+		</div>
+	</div>
+	<div class="control-group">
+		<%=f.label :position%>
+		<div class="controls">
+			<%=f.text_field :position%>
+		</div>
+	</div>
+	<%=f.submit :class => "btn btn-primary"%>
+<%end%>
