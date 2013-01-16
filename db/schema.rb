@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113233708) do
+ActiveRecord::Schema.define(:version => 20130114073825) do
+
+  create_table "events", :force => true do |t|
+    t.string   "contact"
+    t.date     "conversation_date"
+    t.time     "conversation_time"
+    t.string   "conversation_type"
+    t.string   "contact_info"
+    t.string   "notes"
+    t.integer  "job_prospect_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "events", ["job_prospect_id"], :name => "index_events_on_job_prospect_id"
 
   create_table "job_prospects", :force => true do |t|
     t.string   "company"
