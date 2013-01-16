@@ -1,0 +1,10 @@
+<tr>
+	<td><%=link_to "#{e.contact}", job_prospect_event_path(@job_prospect, e), :method => 'get'%></td>
+	<td><%=date(e.conversation_date.month, e.conversation_date.day, e.conversation_date.year)%></td>
+	<td><%= time(e.conversation_time.hour, e.conversation_time.min)%></td>
+	<td><%=e.conversation_type%></td>
+	<td><%=e.contact_info%></td>
+	<td><%=notes(e.notes)%></td>
+	<td><%=link_to "Edit", edit_job_prospect_event_path(@job_prospect, e)%></td>
+	<td><%=link_to "Destroy", job_prospect_event_path(@job_prospect, e), :method => 'delete'%></td>
+</tr>

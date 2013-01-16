@@ -1,0 +1,21 @@
+<h3> Events </h3>
+
+<%= button_to "New Event", new_job_prospect_event_path, :class => "btn btn-primary", :method => :get %>
+<table class = "table table-striped">
+	<thead>
+		<tr>
+			<th>Name of Contact</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Type</th>
+			<th>Contact Info/Address</th>
+			<th>Notes</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @events.each do |e| %>
+			<%= render 'event', :e => e %>
+		<%end%>
+	</tbody>
+</table>
