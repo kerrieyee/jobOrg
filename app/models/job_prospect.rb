@@ -4,5 +4,5 @@ class JobProspect < ActiveRecord::Base
   validates :company, :user, presence: true
 
   belongs_to :user
-
+  has_many :events, :dependent => :destroy
 end
