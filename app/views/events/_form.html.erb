@@ -1,0 +1,15 @@
+<%= form_for [:job_prospect, @event] do |f|%>
+	<%=f.label :contact%>
+	<%=f.text_field :contact%>
+	<%=f.label :contact_info, "Contact Info or Address"%>
+	<%=f.text_field :contact_info%>
+	<%=f.label :conversation_date, "Date"%>
+	<%=f.date_select :conversation_date%>
+	<%=f.label :conversation_time, "Time"%>
+	<%=f.time_select :conversation_time%>
+	<%=f.label :conversation_type %>
+	<%=f.text_field :conversation_type%>
+	<%=f.label :notes%>
+	<%=f.text_area :notes%><br/>
+	<%=f.submit%>
+<%end%>
