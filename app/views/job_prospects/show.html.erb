@@ -1,6 +1,7 @@
 <h1><%=@job_prospect.company%></h1>
 <h2><%=@job_prospect.position%></h2>
 
+<%= button_to "Add Event", new_job_prospect_event_path(@job_prospect), :class => "btn btn-primary", :method => :get %>
 <table class = "table table-striped">
 	<thead>
 		<tr>
@@ -22,5 +23,5 @@
 	</tbody>
 </table>
 
-<%= link_to "All Events", job_prospect_events_path(@job_prospect)%> | 
+<%= link_to "All #{@job_prospect.company} Events", job_prospect_events_path(@job_prospect)%> | 
 <%= link_to "Return to all Job Prospects", job_prospects_path%>
