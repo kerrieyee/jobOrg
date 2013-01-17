@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 		job_prospect = {:job_prospect => @event.job_prospect}
-		
+
 	  if @event.update_attributes(params[:event].merge(job_prospect))
 	  	flash[:success] = "Your event has been successfully updated!"
 	   redirect_to job_prospect_events_path(@event.job_prospect)
@@ -50,6 +50,10 @@ class EventsController < ApplicationController
 			format.html{redirect_to job_prospect_events_path(job_prospect)}
 			format.js
 		end
+	end
+
+	def all_events
+		@event = Event.all
 	end
 
 	private
