@@ -5,7 +5,7 @@ describe "JobProspects", js: true do
 	let!(:job_prospect){Fabricate(:job_prospect)}
 	let!(:job_prospect2){Fabricate(:job_prospect)}
 	context "if user is not logged in" do
-		it "doens't let unauthorized user view job prospects" do
+		it "doesn't let unauthorized user view job prospects" do
 			visit job_prospects_path
 			page.should have_content("You need to sign in or sign up before continuing.")
 		end
@@ -14,6 +14,10 @@ describe "JobProspects", js: true do
 	context "if the correct user is logged in" do
 		before(:each) do
 			login_as job_prospect.user, :scope => :user
+		end
+
+		after(:each) do
+			logout(:user)
 		end
 
 		describe "#index" do
@@ -26,10 +30,7 @@ describe "JobProspects", js: true do
 		end
 
 		describe "#create" do
-			#need to fix ajax to get this to pass
-
 			it "should add a new Job Prospect to the table" do
-				pending
 				visit job_prospects_path
 				fill_in 'job_prospect_company', :with => "DBC"
 				fill_in 'job_prospect_position', :with => "Student"
@@ -41,15 +42,30 @@ describe "JobProspects", js: true do
 		end
 
 		describe "#destroy" do
-			it "should delete a file from the job prospects table" do
+			it "should delete a file from the job prospects table when clicking on ok in the confirm window" do
 				visit job_prospects_path
-				within (:css, 'li##{job_prospect.id}') do
-					click_link "Delete"
+				within ('#1') do
+					click_link 'Delete' 
+					page.driver.browser.switch_to.alert.accept
+					#used to ok the confirrmation box
 				end
+
 				page.should_not have_content(job_prospect.company)
+			end
+
+			it "should not delete a file from the job prospects table when clicking on cancel in the confirm window" do
+				visit job_prospects_path
+				within ('#1') do
+					click_link 'Delete' 
+					page.driver.browser.switch_to.alert.dismiss
+					#used to cancel the confirrmation box
+				end
+
+				page.should have_content(job_prospect.company)
 			end
 		end
 	end
 end
+
 
 		

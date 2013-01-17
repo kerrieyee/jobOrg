@@ -11,6 +11,7 @@ class JobProspectsController < ApplicationController
 																				:user => current_user)
 		respond_to do |format|
 			if @job_prospect.save
+				format.html{redirect_to job_prospects_url}
 				format.js
 			else
 				#need error handling
@@ -28,6 +29,7 @@ class JobProspectsController < ApplicationController
 		@job_prospect = JobProspect.find(params[:id])
 		@job_prospect.destroy
 		respond_to do |format|
+			format.html{redirect_to job_prospects_url}
 			format.js
 		end
 	end
