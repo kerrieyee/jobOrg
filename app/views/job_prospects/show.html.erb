@@ -1,0 +1,26 @@
+<h1><%=@job_prospect.company%></h1>
+<h2><%=@job_prospect.position%></h2>
+
+<table class = "table table-striped">
+	<thead>
+		<tr>
+			<th>Name of Contact</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Type</th>
+			<th>Contact Info/Address</th>
+			<th>Notes</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @job_prospect_events.each_with_index do |e, i| %>
+			<%if i <=4%>
+				<%= render 'events/event', :e => e %>
+			<%end%>
+		<%end%>
+	</tbody>
+</table>
+
+<%= link_to "All Events", job_prospect_events_path(@job_prospect)%>
+<%= link_to "Return to all Job Prospects", job_prospects_path%>

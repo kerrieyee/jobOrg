@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 	def index
 		@job_prospect = JobProspect.find(params[:job_prospect_id])
-		@events = Event.where(:job_prospect_id => params[:job_prospect_id])
+		@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
 	end
 
 	def new
