@@ -1,0 +1,7 @@
+$('.alert-success').fadeOut('fast');
+$('#<%=@event.id%>').fadeOut();
+
+var close = '<a class = "close" data-dismiss="alert">&#215;</a>';
+$('.delete-event-success').html(close + '\n Job Prospect has been successfully deleted!');
+$('.delete-event-success').fadeIn('slow');
+$('.delete-event-success').fadeOut('slow');

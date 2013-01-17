@@ -1,12 +1,11 @@
 class JobProspectsController < ApplicationController
 	def index
 		@job_prospects = JobProspect.where(:user_id => current_user.id)
-		@job_prospect = JobProspect.new
 	end
 
 	def create
 		@job_prospects = JobProspect.where(:user_id => current_user.id)
-		@job_prospect = JobProspect.create(	:company => params[:job_prospect][:company],
+		@job_prospect = JobProspect.new(	:company => params[:job_prospect][:company],
 																				:position => params[:job_prospect][:position],
 																				:user => current_user)
 		respond_to do |format|
@@ -14,9 +13,9 @@ class JobProspectsController < ApplicationController
 				format.html{redirect_to job_prospects_url}
 				format.js
 			else
-				#need error handling
-				# format.json{ render json: @job_prospect.to_json}
-			end
+				format.html{ render :action => "create"}
+				format.js
+     end			
 		end
 	end
 
