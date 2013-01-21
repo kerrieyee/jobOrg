@@ -24,8 +24,7 @@ class JobProspectsController < ApplicationController
 		if @job_prospect
 			@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date").limit(5)
 		else
-			redirect_to root_path
-			flash[:error] = "You are not allowed to access this page!"
+			redirect_unauthorized_user
 		end
 	end
 
