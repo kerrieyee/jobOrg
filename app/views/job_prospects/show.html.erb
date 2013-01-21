@@ -2,26 +2,8 @@
 <h2><%=@job_prospect.position%></h2>
 
 <%= button_to "Add Event", new_job_prospect_event_path(@job_prospect), :class => "btn btn-primary", :method => :get %>
-<table class = "table table-striped">
-	<thead>
-		<tr>
-			<th>Name of Contact</th>
-			<th>Date</th>
-			<th>Time</th>
-			<th>Type</th>
-			<th>Contact Info/Address</th>
-			<th>Notes</th>
-			<th>Edit</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @job_prospect_events.each_with_index do |e, i| %>
-			<%if i <=4%>
-				<%= render 'events/event', :e => e %>
-			<%end%>
-		<%end%>
-	</tbody>
-</table>
+
+<%= render 'shared/events_table'%>
 
 <%= link_to "All #{@job_prospect.company} Events", job_prospect_events_path(@job_prospect)%> | 
 <%= link_to "Return to all Job Prospects", job_prospects_path%>

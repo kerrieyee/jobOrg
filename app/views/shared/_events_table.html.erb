@@ -1,0 +1,19 @@
+<table class = "table table-striped">
+	<thead>
+		<tr>
+			<th>Name of Contact</th>
+			<th>Company</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Type</th>
+			<th>Contact Info/Address</th>
+			<th>Notes</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @events.each do |e| %>
+			<%= render 'events/event', :e => e %>
+		<%end%>
+	</tbody>
+</table>
