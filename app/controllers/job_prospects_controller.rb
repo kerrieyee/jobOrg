@@ -21,7 +21,7 @@ class JobProspectsController < ApplicationController
 
 	def show
 		@job_prospect = JobProspect.find(params[:id])
-		@job_prospect_events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
+		@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date").limit(5)
 	end
 
 	def destroy
