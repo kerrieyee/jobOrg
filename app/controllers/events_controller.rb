@@ -1,7 +1,14 @@
 class EventsController < ApplicationController
+	before_filter :authenticate_user!
+
 	def index
-		@job_prospect = JobProspect.find(params[:job_prospect_id])
-		@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
+		job_prospect = JobProspect.find(params[:job_prospect_id])
+		if job_prospect.user == current_user 
+			@job_prospect = job_prospect
+			@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
+		else
+			redirect_unauthorized_user
+		end
 	end
 
 	def new
@@ -22,11 +29,13 @@ class EventsController < ApplicationController
 	end
 
 	def show
-		@event = Event.find(params[:id])
+		event = Event.find(params[:id]) 
+		authorize_user(event)
 	end
 
 	def edit
-		@event = Event.find(params[:id])
+		event = Event.find(params[:id])
+		authorize_user(event)
 	end
 
 	def update
@@ -35,7 +44,7 @@ class EventsController < ApplicationController
 
 	  if @event.update_attributes(params[:event].merge(job_prospect))
 	  	flash[:success] = "Your event has been successfully updated!"
-	   redirect_to job_prospect_events_path(@event.job_prospect)
+	   	redirect_to job_prospect_events_path(@event.job_prospect)
 	 	else
 	 		flash.now[:error] = "Invalid event.  #{display_errors(@event)}"
 	 		render "edit"
@@ -53,7 +62,10 @@ class EventsController < ApplicationController
 	end
 
 	def all_events
-		@event = Event.all
+		@events = []
+		Event.all.each do |event|  
+			@events<<event if correct_user?(event)
+		end 
 	end
 
 	private
@@ -61,4 +73,20 @@ class EventsController < ApplicationController
 		object.errors.full_messages.join(". ")
 	end
 
+	def authorize_user(event)
+		if correct_user?(event)
+			@event = event 
+		else
+			redirect_unauthorized_user
+		end
+	end
+
+	def correct_user?(event)
+		event.job_prospect.user == current_user 
+	end
+
+	def redirect_unauthorized_user
+		redirect_to root_path	
+		flash[:error] = "You are not allowed to access this page"
+	end
 end

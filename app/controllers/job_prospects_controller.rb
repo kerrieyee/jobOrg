@@ -20,8 +20,13 @@ class JobProspectsController < ApplicationController
 	end
 
 	def show
-		@job_prospect = JobProspect.find(params[:id])
-		@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date").limit(5)
+		@job_prospect = JobProspect.find_by_id_and_user_id(params[:id], current_user.id)
+		if @job_prospect
+			@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date").limit(5)
+		else
+			redirect_to root_path
+			flash[:error] = "You are not allowed to access this page!"
+		end
 	end
 
 	def destroy
