@@ -64,9 +64,7 @@ class EventsController < ApplicationController
 	def all_events
 		#need to fix very inefficient
 		@events = []
-		Event.all.each do |event|  
-			@events<<event if correct_user?(event)
-		end 
+		Event.all.each{ |event|  @events<<event if correct_user?(event.job_prospect.user, current_user) }
 	end
 
 	private
@@ -75,11 +73,7 @@ class EventsController < ApplicationController
 	end
 
 	def authorize_user(event)
-		if correct_user?(event.job_prospect.user, current_user)
-			@event = event 
-		else
-			redirect_unauthorized_user
-		end
+		correct_user?(event.job_prospect.user, current_user) ? @event = event : redirect_unauthorized_user
 	end
 
 	
