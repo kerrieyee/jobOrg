@@ -1,8 +1,10 @@
 <h1><%= current_user.name%>'s Job Prospects </h1>
 <div class="alert alert-success create-job-prospect-success" style = "display: none;"></div>
 <div class="alert alert-success delete-job-prospect-success" style = "display: none;"></div>
-
-<%=render 'form'%>
+<%= link_to "New Job Propsect", new_job_prospect_path, :remote => true, :method => "get", :class => "btn btn-primary new_job_prospect_button" %>
+<div class="form" style = "display: none;">
+	<%=render 'form'%>
+</div>
 
 <table class="table" id="job_prospects_list">
 	<thead>
