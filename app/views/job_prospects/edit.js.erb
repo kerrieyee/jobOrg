@@ -2,5 +2,8 @@ $('form.new_job_prospect').replaceWith("<%= j render(:partial=> 'form', :locals 
 $('.form').show();
 $('.new_job_prospect_button').hide();
 
-
+// instead of this could always do everything clientside where you would keep the same form 
+// no hiding or showing that would just use js to rerender the action
+// this would allow the form to be created purely server side
+// The third option would be to creat two separate forms for edit and new and toggle the two forms.
 
