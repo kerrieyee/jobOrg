@@ -32,11 +32,12 @@ describe "JobProspects", js: true do
 		describe "#create" do
 			it "should add a new Job Prospect to the table" do
 				visit job_prospects_path
+				click_link "New Job Propsect"
+				Capybara.default_wait_time = 5
+				#Changed default wait time to wait for the AJAX to load
 				fill_in 'job_prospect_company', :with => "DBC"
 				fill_in 'job_prospect_position', :with => "Student"
 				click_button "Create Job prospect"
-				Capybara.default_wait_time = 5
-				#Changed default wait time to wait for the AJAX to load
 				page.should have_content("DBC")
 			end
 		end
@@ -50,7 +51,7 @@ describe "JobProspects", js: true do
 					#used to ok the confirrmation box
 				end
 
-				page.should_not have_content(job_prospect.company)
+				page.should_not have_content(job_prospect.position)
 			end
 
 			it "should not delete a file from the job prospects table when clicking on cancel in the confirm window" do
@@ -64,6 +65,32 @@ describe "JobProspects", js: true do
 				page.should have_content(job_prospect.company)
 			end
 		end
+
+		describe "#edit" do
+			it "should show the updated table with changes when edited" do
+				pending
+				#pending because can't get the ajax to work with it right now...the form is not showin when edit is clicked
+				visit job_prospects_path
+				within ("#1") do 
+					click_link 'Edit'
+				end
+				fill_in 'job_prospect_company', :with => "Orange Juice"
+				click_button("Update Job prospect")
+				page.should have_content("Orange Juice") 
+			end
+		end
+
+		describe "#show" do
+			it "when the company name link is clicked it should go to the show page for that job_prospect" do
+				visit job_prospects_path
+				within ("#1") do 
+					click_link "#{job_prospect.company}"
+				end	
+				page.should have_content("All #{job_prospect.company} Events")
+			end
+		end
+
+
 	end
 end
 
