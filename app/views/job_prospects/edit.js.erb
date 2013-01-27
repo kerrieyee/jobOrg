@@ -1,5 +1,7 @@
 $('form.new_job_prospect').replaceWith("<%= j render(:partial=> 'form', :locals =>{:job_prospect=> @job_prospect})%>")
 $('.form').show();
+$('input#job_prospect_company').val("<%=@job_prospect.company%>");
+$('input#job_prospect_position').val("<%=@job_prospect.position%>");
 $('.new_job_prospect_button').hide();
 
 // instead of this could always do everything clientside where you would keep the same form 
