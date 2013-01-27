@@ -1,6 +1,6 @@
 <tr id="<%=job_prospect.id%>" >
 	<td><%= link_to "#{job_prospect.company}", job_prospect_path(job_prospect)%></td>
 	<td><%= job_prospect.position%></td>
-	<td><%= link_to "Edit", edit_job_prospect_path(job_prospect), :remote => true%>
-	<td><%= link_to "Delete", job_prospect_path(job_prospect), :confirm => "Are you sure? This will delete all events for this company as well.", :method => :delete, :remote => true %>
+	<td><%= link_to "Edit", edit_job_prospect_path(job_prospect), :remote => true, :class => "btn btn-small btn-primary"%>
+	<td><%= link_to "Delete", job_prospect_path(job_prospect), :confirm => "Are you sure? This will delete all events for this company as well.", :method => :delete, :remote => true, :class => "btn btn-small btn-danger" %>
 </tr>
