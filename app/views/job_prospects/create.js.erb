@@ -9,7 +9,8 @@ $('.errors').hide();
   $('.errors').fadeIn('slow');
   // something to try later can listen for all errors from this page to get output so don't have to ping server and errors are all clientside
 <%else%>
-	$('table#job_prospects_list tbody tr:last').after("<%= j render @job_prospect%>");
+	
+	$('table#job_prospects_list thead').after("<%= j render @job_prospect%>");
 	$('input#job_prospect_company').val("");
 	$('input#job_prospect_position').val("");
 

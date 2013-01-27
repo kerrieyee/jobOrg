@@ -1,6 +1,6 @@
 class JobProspectsController < ApplicationController
 	def index
-		@job_prospects = JobProspect.where(:user_id => current_user.id)
+		@job_prospects = JobProspect.where(:user_id => current_user.id).order("created_at DESC")
 		@job_prospect=JobProspect.new
 	end
 
