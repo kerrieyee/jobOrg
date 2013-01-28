@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class EventsController < ApplicationController
 	before_filter :authenticate_user!
 
@@ -5,7 +7,11 @@ class EventsController < ApplicationController
 		job_prospect = JobProspect.find(params[:job_prospect_id])
 		if correct_user?(job_prospect.user, current_user) 
 			@job_prospect = job_prospect
-			@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
+			@events = Event.paginate(:page       => params[:page],
+                           :per_page   => 10,
+                           :order      => 'conversation_date DESC',
+                           :conditions => { :job_prospect_id => @job_prospect.id })
+			#@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
 		else
 			redirect_unauthorized_user
 		end
@@ -63,8 +69,11 @@ class EventsController < ApplicationController
 
 	def all_events
 		#need to fix very inefficient
-		@events = []
-		Event.all.each{ |event|  @events<<event if correct_user?(event.job_prospect.user, current_user) }
+		@collection_events = []
+		Event.all.each{ |event|  @collection_events<<event if correct_user?(event.job_prospect.user, current_user) }
+		@events = @collection_events.paginate(:page       => params[:page],
+                           :per_page   => 10,
+                           :order      => 'conversation_date DESC')
 	end
 
 	private

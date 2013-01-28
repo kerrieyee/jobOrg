@@ -2,3 +2,4 @@
 <div class="alert alert-warning delete-event-success" style = "display: none;"></div>
 <%= button_to "New Event", new_job_prospect_event_path, :class => "btn btn-primary", :method => :get %>
 <%=render 'shared/events_table', :events => @events%>
+<%= will_paginate @events %>

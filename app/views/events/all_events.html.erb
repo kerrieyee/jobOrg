@@ -1,3 +1,4 @@
- <h1>All Events<small>(<%=pluralize(@events.length, "event")%> total)</small></h1>
+ <h1>All Events<small> (<%=pluralize(@collection_events.length, "event")%> total)</small></h1>
 
 <%=render 'shared/events_table'%>
+<%= will_paginate @events %>
