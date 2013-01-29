@@ -8,10 +8,12 @@
             <li><%= link_to "Job Prospects", job_prospects_path  %></li>
              <li><%= link_to "All Events", all_events_path  %></li>
              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+             <li><%= link_to "Profile", edit_user_registration_path %></li>
           </ul>
         <% else %>
           <ul class="nav pull-right">
             <li><%= link_to "Sign In", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_registration_path(resource_name) %></li>
           </ul>
         <% end  %>
       </div><!--/.nav-collapse -->
