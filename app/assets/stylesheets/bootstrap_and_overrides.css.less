@@ -31,24 +31,37 @@
 // Example:
 // @linkColor: #ff0000;
 
-.row {
-	margin-top: 50px; 
+.navbar-inner{
+	background-image: -webkit-linear-gradient(top, rgb(221, 250, 252), rgb(200, 235, 232));
 }
+
+.row {
+	margin-top: 10%; 
+	margin-bottom: 5%;
+}
+
 body {
-	background-color: #051a27;
+	background-color: white;
+	font-size: 15px;
 }
 .content{
-	background-color:  rgb(14, 70, 107);
-	color: white;
+	background-color:  rgb(228, 245, 243);
+	color: rgb(6, 83, 104);
 	border-radius: 6px;
 	padding: 10px 10px 10px 10px;
+	box-shadow: 10px 10px 5px #888888;
+
+	h1{
+		text-align: center;
+		margin-bottom: 5%;
+	}
 
 	#company {
 		
 		text-decoration:underline;
 
 		a{
-			color: rgb(201, 241, 252);
+			color: rgb(6, 83, 104);
 		}
 		a:hover {
 		color: rgb(248, 220, 239);
@@ -56,15 +69,46 @@ body {
 	}
 }
 
-.btn-warning{
-	background-image: -webkit-linear-gradient(bottom, #e78d0f, rgb(233, 128, 31));
-	color: rgb(253, 230, 188);
+.table td{
+	border-top: 1px solid rgb(137, 189, 206);
 }
 
 .btn-info{
-	color: rgb(201, 241, 252);
+	color: rgb(217, 241, 248);
 }
 
 
 
+div.pagination {
+  font-family:Helvetics, arial, Sans-Serif;
+  font-size: 13px;
+  text-align:center;
+  padding:4px 6px 4px 0;
+  color:#313031;
+}
 
+div.pagination a {
+  color:#0030ce;
+  text-decoration:none;
+  padding:5px 6px 4px 5px;
+  margin:0 3px 0 3px;
+  border-radius: 4px;
+}
+
+div.pagination a:hover, div.pagination a:active {
+  color:#0066a7;
+  border:1px solid rgb(8, 80, 128);
+  border-radius: 4px;
+  background-color:rgb(197, 235, 232);
+}
+div.pagination span.current {
+  padding:5px 6px 4px 5px;
+  margin:0 3px 0 3px;
+  border:1px solid #b7d8ee;
+  font-weight:bold;
+  color:#444444;
+  background-color:#d2eaf6;
+}
+div.pagination span.disabled {
+  display:none;
+}

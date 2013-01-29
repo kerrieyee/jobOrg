@@ -1,6 +1,9 @@
 class JobProspectsController < ApplicationController
 	def index
-		@job_prospects = JobProspect.where(:user_id => current_user.id).order("created_at DESC")
+		@job_prospects = JobProspect.paginate(:page => params[:page],
+                           :per_page   => 8,
+                           :order      => 'created_at DESC',
+                           :conditions => { :user_id => current_user.id })
 		@job_prospect=JobProspect.new
 	end
 

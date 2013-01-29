@@ -1,6 +1,4 @@
 <h1><%= current_user.name%>'s Job Prospects </h1>
-<div class="alert alert-success create-job-prospect-success" style = "display: none;"></div>
-<div class="alert alert-success delete-job-prospect-success" style = "display: none;"></div>
 <%= link_to "New Job Propsect", new_job_prospect_path, :remote => true, :method => "get", :class => "btn btn-info new_job_prospect_button" %>
 <div class="form" style = "display: none;">
 	<%=render 'form'%>
@@ -19,4 +17,6 @@
 		<%end%>
 	</tbody>
 </table>
+
+<%= will_paginate @job_prospects %>
 

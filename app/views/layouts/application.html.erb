@@ -10,14 +10,20 @@
 	<%= render 'layouts/navigation'%>
 	<div class="container" >
 		<div class="row">
-			<div class="content span10 offset1">
-				<% flash.each do |key, value| %>
+			<div class="alert alert-warning delete-event-success" style = "display: none;"></div>
+			<div class="alert alert-error errors" style = "display: none;"></div>
+			<div class="alert alert-success create-job-prospect-success" style = "display: none;"></div>
+			<div class="alert alert-success delete-job-prospect-success" style = "display: none;"></div>
+			<% flash.each do |key, value| %>
 					<%= content_tag(:div, value, class: "alert alert-#{key}")%>
 				<%end%>
+			<div class="content span10 offset1">
 				<%= yield %>
-				<%=debug(params)%>
 			</div>
 		</div>
+	</div>
+	<div class="footer">
+						<%=debug(params)%>
 	</div>
 </body>
 </html>
