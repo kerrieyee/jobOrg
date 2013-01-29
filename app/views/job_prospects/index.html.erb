@@ -1,10 +1,10 @@
 <h1><%= current_user.name%>'s Job Prospects </h1>
-<%= link_to "New Job Propsect", new_job_prospect_path, :remote => true, :method => "get", :class => "btn btn-info new_job_prospect_button" %>
-<div class="form" style = "display: none;">
+<%= link_to "New Job Propsect", new_job_prospect_path, :remote => true, :method => "get", :class => "btn btn-info new_job_prospect_button offset1" %>
+<div class="form offset1" style = "display: none;">
 	<%=render 'form'%>
 </div>
 
-<table class="table" id="job_prospects_list">
+<table class="table span8 offset1" id="job_prospects_list">
 	<thead>
 		<tr>
 			<th> Company </th>
