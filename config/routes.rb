@@ -1,7 +1,12 @@
 JobOrg::Application.routes.draw do
+
   devise_for :users
 
-  root :to => "job_prospects#index"
+  scope "api" do
+    resources :job_prospects
+  end
+
+  root :to => "main#index"
   resources :job_prospects do
     resources :events
   end

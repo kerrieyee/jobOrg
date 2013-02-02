@@ -1,1 +1,20 @@
-<h1> Job Prospects </h1>
+<h1>Job Prospects</h1>
+<div id='errors'></div>
+<form id="new_job_prospect">
+	Company:</br>
+	<input type="text" name="company" id="new_job_prospect_company"><br/>
+	Position:</br>
+	<input type="text" name="position" id="new_job_prospect_position"><br/>
+	<input type="submit" value="Add" class="btn btn-small btn-info">
+</form>
+<table class="table">
+	<thead>
+		<tr> 
+			<th> Company </th>
+			<th> Position </th>
+		</tr>
+	</thead>
+	<tbody id="jobprospects">
+		
+	</tbody>
+</table>

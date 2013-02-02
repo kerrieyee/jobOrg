@@ -5,7 +5,7 @@ class JobProspectsController < ApplicationController
                            :per_page   => 8,
                            :order      => 'created_at DESC',
                            :conditions => { :user_id => current_user.id })
-		respond_with (@job_prospects)
+		respond_with @job_prospects
 	end
 
 	# def new
