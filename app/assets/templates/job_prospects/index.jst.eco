@@ -1,5 +1,5 @@
 <h1>Job Prospects</h1>
-<div id='errors'></div>
+<div class='alert alert-danger' id='errors' style="display:none"></div>
 <form id="new_job_prospect">
 	Company:</br>
 	<input type="text" name="company" id="new_job_prospect_company"><br/>
