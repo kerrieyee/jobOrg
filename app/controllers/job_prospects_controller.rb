@@ -1,5 +1,5 @@
 class JobProspectsController < ApplicationController
-	respond_to :json
+	respond_to :json, :html
 	def index
 		@job_prospects = JobProspect.paginate(:page => params[:page],
                            :per_page   => 8,
@@ -18,11 +18,9 @@ class JobProspectsController < ApplicationController
 
 
 	def create
-		@job_prospect = JobProspect.new(	:company => params[:job_prospect][:company],
 		@job_prospect = JobProspect.create(	:company => params[:job_prospect][:company],
 																			:position => params[:job_prospect][:position],
 																			:user => current_user)
-		@job_prospect.save ? respond_with(@job_prospect) : respond_with(@job_prospect, :status => unprocessable_entity)
 		respond_with @job_prospect
 	end
 

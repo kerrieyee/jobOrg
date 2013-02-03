@@ -2,7 +2,6 @@ class JobOrg.Routers.JobProspects extends Backbone.Router
 
 	routes: 
 		'': 'index'
-		'job_prospects/:id' : 'show'
 
 	initialize: ->
 		@collection = new JobOrg.Collections.JobProspects()
