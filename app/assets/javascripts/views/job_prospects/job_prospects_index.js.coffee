@@ -4,6 +4,8 @@ class JobOrg.Views.JobProspectsIndex extends Backbone.View
 
   events:
     'submit #new_job_prospect': 'createJobProspect'
+    'click input[value="Update Job Prospect"]': 'updateJobProspect'
+
 
   initialize: ->
     @collection.on('reset', @render, this)
@@ -32,6 +34,27 @@ class JobOrg.Views.JobProspectsIndex extends Backbone.View
         $('.alert-success').show()
         $('.alert-warning').hide()
         $('.alert-notice').hide()
+      error: @handleError
+  
+  updateJobProspect: (event, job_prospect) ->
+    event.preventDefault()
+    attributes =
+      company: $('#edit_job_prospect_company').val()
+      position: $('#edit_job_prospect_position').val()
+    editJob = @collection.get($('#edit_id').val())
+    editJob.set attributes
+    editJob.save attributes,
+      wait: true
+      success: ->
+        $('#edit_job_prospect')[0].reset()
+        $('#edit_job_prospect').hide()
+        $('#new_job_prospect').show()
+        $('.alert-success').text "Your job prospect has been successfully updated."
+        $('.alert-error').hide()
+        $('.alert-success').show()
+        $('.alert-warning').hide()
+        $('.alert-notice').hide()
+        editJob.trigger("save")
       error: @handleError
 
   handleError: (job_prospect, response) ->

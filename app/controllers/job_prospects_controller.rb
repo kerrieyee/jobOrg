@@ -1,21 +1,9 @@
 class JobProspectsController < ApplicationController
 	respond_to :json, :html
 	def index
-		@job_prospects = JobProspect.paginate(:page => params[:page],
-                           :per_page   => 8,
-                           :order      => 'created_at DESC',
-                           :conditions => { :user_id => current_user.id })
+		@job_prospects = JobProspect.where(:user_id => current_user.id)
 		respond_with @job_prospects
 	end
-
-	# def new
-	# 	@job_prospect=JobProspect.new
-	# 	respond_to do |format| 
-	# 		format.html { render :action => "new" }
-	# 		format.js
-	# 	end
-	# end
-
 
 	def create
 		@job_prospect = JobProspect.create(	:company => params[:job_prospect][:company],
@@ -24,15 +12,13 @@ class JobProspectsController < ApplicationController
 		respond_with @job_prospect
 	end
 
-	# def edit
-	# 	@job_prospect = JobProspect.find(params[:id])
-	# 	respond_to { |format| format.js }
-	# end 
-
 	def update
 		@job_prospect = JobProspect.find(params[:id])
+		@job_prospect.update_attributes(:company => params[:job_prospect][:company],
+																			:position => params[:job_prospect][:position],
+																			:user => current_user)
 
-		@job_prospect.update_attributes(params[:job_prospect]) ? respond_with(@job_prospect) : respond_with(@job_prospect, :status => unprocessable_entity)
+		respond_with(@job_prospect)
 	end
 
 	def show

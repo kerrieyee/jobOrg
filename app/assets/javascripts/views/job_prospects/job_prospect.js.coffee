@@ -9,6 +9,7 @@ class JobOrg.Views.JobProspect extends Backbone.View
 
   initialize: ->
     @model.on('destroy', @unrenderJobProspect, this)
+    @model.on('save', @rerenderJobProspect, this)
 
   render: ->
     $(@el).html(@template(job_prospect: @model))
@@ -18,6 +19,28 @@ class JobOrg.Views.JobProspect extends Backbone.View
     event.preventDefault
     @model.destroy()
 
+  editJobProspect: (event, job_prospect) ->
+    event.preventDefault()
+    $('form#new_job_prospect').hide()
+    $('form#edit_job_prospect').show()
+    $('#edit_job_prospect_company').val(@model.get('company'))
+    $('#edit_job_prospect_position').val(@model.get('position'))
+    $('#edit_id').val(@model.get('id'))
+  
+  handleError: (job_prospect, response) ->
+    if response.status == 422
+      errors = $.parseJSON(response.responseText).errors
+      for attribute, messages of errors
+        for message in messages
+          $('.alert-error').text("#{attribute} #{message}.")
+          $('.alert-error').show()
+          $('.alert-success').hide()
+          $('.alert-warning').hide()
+          $('.alert-notice').hide()
+
+  rerenderJobProspect: ->
+    $(@el).html(@template(job_prospect: @model))
+    this
 
   unrenderJobProspect: ->
     $(@el).remove()
