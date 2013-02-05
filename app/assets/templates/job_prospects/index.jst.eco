@@ -6,6 +6,13 @@
 	<input type="text" name="position" id="new_job_prospect_position"><br/>
 	<input type="submit" value="Add" class="btn btn-small btn-info">
 </form>
+<form id="edit_job_prospect" style="display:none">
+	Company:</br>
+	<input type="text" name="company" id="edit_job_prospect_company"><br/>
+	Position:</br>
+	<input type="text" name="position" id="edit_job_prospect_position"><br/>
+	<input type="submit" value="Update Job Prospect" class="btn btn-small btn-info">
+</form>
 <table class="table">
 	<thead>
 		<tr> 
