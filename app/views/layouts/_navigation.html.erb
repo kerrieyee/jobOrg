@@ -5,10 +5,10 @@
       <div class="container nav-collapse">
         <% if user_signed_in? %>
           <ul class="nav pull-right">
-            <li><%= link_to "Job Prospects", job_prospects_path  %></li>
-             <li><%= link_to "All Events", all_events_path  %></li>
-             <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-             <li><%= link_to "Profile", edit_user_registration_path %></li>
+            <li><%= link_to "Job Prospects", root_path  %></li>
+            <li><%= link_to "All Events", all_events_path  %></li>
+            <li><%= link_to "Profile", edit_user_registration_path %></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
           </ul>
         <% else %>
           <ul class="nav pull-right">
