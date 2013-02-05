@@ -21,6 +21,7 @@
 			<th> Position </th>
 			<th> Edit </th>
 			<th> Delete </th>
+			<th> Last Updated </th>
 		</tr>
 	</thead>
 	<tbody id="jobprospects">
