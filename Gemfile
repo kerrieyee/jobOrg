@@ -45,6 +45,7 @@ group :production do
 end
 
 gem 'will_paginate', '~> 3.0.0'
+gem 'backbone-on-rails'
 gem 'jquery-rails'
 gem "therubyracer"
 gem "less-rails"

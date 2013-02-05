@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114073825) do
+ActiveRecord::Schema.define(:version => 20130205064309) do
 
   create_table "events", :force => true do |t|
     t.string   "contact"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(:version => 20130114073825) do
     t.string   "company"
     t.string   "position"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "last_updated"
   end
 
   add_index "job_prospects", ["user_id"], :name => "index_job_prospects_on_user_id"

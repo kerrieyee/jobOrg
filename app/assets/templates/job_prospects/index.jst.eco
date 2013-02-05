@@ -1,0 +1,30 @@
+<h1>Job Prospects</h1>
+<form id="new_job_prospect">
+	Company:</br>
+	<input type="text" name="company" id="new_job_prospect_company"><br/>
+	Position:</br>
+	<input type="text" name="position" id="new_job_prospect_position"><br/>
+	<input type="submit" value="Add" class="btn btn-small btn-info">
+</form>
+<form id="edit_job_prospect" style="display:none">
+	Company:</br>
+	<input type="text" name="company" id="edit_job_prospect_company"><br/>
+	Position:</br>
+	<input type="text" name="position" id="edit_job_prospect_position"><br/>
+	<input type="hidden" name="id" id="edit_id">
+	<input type="submit" value="Update Job Prospect" class="btn btn-small btn-info">
+</form>
+<table class="table">
+	<thead>
+		<tr> 
+			<th> Company </th>
+			<th> Position </th>
+			<th> Edit </th>
+			<th> Delete </th>
+			<th> Last Updated </th>
+		</tr>
+	</thead>
+	<tbody id="jobprospects">
+		
+	</tbody>
+</table>

@@ -11,10 +11,9 @@
 	<div class="container" >
 		<div class="row">
 			<div class="errors-alerts span10 offset1">
-				<div class="alert alert-warning delete-event-success" style = "display: none;"></div>
-				<div class="alert alert-error errors" style = "display: none;"></div>
-				<div class="alert alert-success create-job-prospect-success" style = "display: none;"></div>
-				<div class="alert alert-success delete-job-prospect-success" style = "display: none;"></div>
+				<div class="alert alert-warning" style = "display: none;"></div>
+				<div class="alert alert-error" style = "display: none;"></div>
+				<div class="alert alert-success" style = "display: none;"></div>
 				<% flash.each do |key, value| %>
 					<%= content_tag(:div, value, class: "alert alert-#{key}")%>
 				<%end%>
