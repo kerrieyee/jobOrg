@@ -1,3 +1,16 @@
 == Welcome to JobOrg
 
+JobOrg is an app that will help to organize your job search.  
+It keeps track of companies that you've applied to or job prospects.
+Each job prospect can have events that will keep track of interviews, phone calls, skype chats, and email.
+
+MVP: http://joborg.herokuapp.com
+
+==To do
+  *add a show page for events
+  *set-up email confirmations in devise
+  *speed-up the test suite and add controller/helper tests
+  *add paperclip(will allow people to keep track which resume and cover letter was sent to which company)
+  *allow sorting in job prospect columns as well as event columns
+  
 
