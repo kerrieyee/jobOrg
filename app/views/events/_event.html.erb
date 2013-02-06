@@ -2,7 +2,7 @@
 	<td><%=e.contact%></td>
 	<td><%=link_to "#{e.job_prospect.company}", job_prospect_path(e.job_prospect), :method => 'get'%></td>
 	<td><%=date(e.conversation_date.month, e.conversation_date.day, e.conversation_date.year)%></td>
-	<td><%= time(e.conversation_time.hour, e.conversation_time.min)%></td>
+	<td><%= time(e.conversation_time.hour, e.conversation_time.min) if e.conversation_time%></td>
 	<td><%=e.conversation_type%></td>
 	<td><%=e.contact_info%></td>
 	<td><%=notes(e.notes)%></td>

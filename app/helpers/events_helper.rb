@@ -26,7 +26,10 @@ module EventsHelper
 	end
 
 	def notes(note)
-		note.length > 75 ? "#{note[0..74]}...": note
+	  if note 
+	 		note.length > 75 ? "#{note[0..74]}..." : note 
+		end
+		#need to find a better way for this
 	end
 
 
