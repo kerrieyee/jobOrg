@@ -6,7 +6,7 @@ describe "JobProspects", js: true do
 	let!(:job_prospect2){Fabricate(:job_prospect)}
 	context "if user is not logged in" do
 		it "doesn't let unauthorized user view job prospects" do
-			visit job_prospects_path
+			visit root_path
 			page.should have_content("You need to sign in or sign up before continuing.")
 		end
 	end
@@ -23,30 +23,27 @@ describe "JobProspects", js: true do
 		describe "#index" do
 
 			it "should display all of the current user job_prospects" do
-				visit job_prospects_path
+				visit root_path
 				page.should have_content job_prospect.company
-				page.should_not have_content job_prospect2.company
+				page.should_not have_content job_prospect2.position
 			end
 		end
 
 		describe "#create" do
 			it "should add a new Job Prospect to the table" do
-				visit job_prospects_path
-				click_link "New Job Propsect"
-				Capybara.default_wait_time = 5
-				#Changed default wait time to wait for the AJAX to load
-				fill_in 'job_prospect_company', :with => "DBC"
-				fill_in 'job_prospect_position', :with => "Student"
-				click_button "Create Job prospect"
+				visit root_path
+				fill_in 'new_job_prospect_company', :with => "DBC"
+				fill_in 'new_job_prospect_position', :with => "Student"
+				click_button "Add"
 				page.should have_content("DBC")
 			end
 		end
 
 		describe "#destroy" do
 			it "should delete a file from the job prospects table when clicking on ok in the confirm window" do
-				visit job_prospects_path
+				visit root_path
 				within ('#1') do
-					click_link 'Delete' 
+					click_button 'Delete' 
 					page.driver.browser.switch_to.alert.accept
 					#used to ok the confirrmation box
 				end
@@ -55,9 +52,9 @@ describe "JobProspects", js: true do
 			end
 
 			it "should not delete a file from the job prospects table when clicking on cancel in the confirm window" do
-				visit job_prospects_path
+				visit root_path
 				within ('#1') do
-					click_link 'Delete' 
+					click_button 'Delete' 
 					page.driver.browser.switch_to.alert.dismiss
 					#used to cancel the confirrmation box
 				end
@@ -68,21 +65,19 @@ describe "JobProspects", js: true do
 
 		describe "#edit" do
 			it "should show the updated table with changes when edited" do
-				pending
-				#pending because can't get the ajax to work with it right now...the form is not showin when edit is clicked
-				visit job_prospects_path
+				visit root_path
 				within ("#1") do 
-					click_link 'Edit'
+					click_button 'Edit'
 				end
-				fill_in 'job_prospect_company', :with => "Orange Juice"
-				click_button("Update Job prospect")
+				fill_in 'edit_job_prospect_company', :with => "Orange Juice"
+				click_button("Update Job Prospect")
 				page.should have_content("Orange Juice") 
 			end
 		end
 
 		describe "#show" do
 			it "when the company name link is clicked it should go to the show page for that job_prospect" do
-				visit job_prospects_path
+				visit root_path
 				within ("#1") do 
 					click_link "#{job_prospect.company}"
 				end	

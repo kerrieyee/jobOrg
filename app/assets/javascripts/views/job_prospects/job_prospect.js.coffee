@@ -2,6 +2,7 @@ class JobOrg.Views.JobProspect extends Backbone.View
 
   template: JST['job_prospects/job_prospect']
   tagName: 'tr'
+  id: 'id'
 
   events:
     'click input[value="Delete"]': 'removeJobProspect'
@@ -10,6 +11,7 @@ class JobOrg.Views.JobProspect extends Backbone.View
   initialize: ->
     @model.on('destroy', @unrenderJobProspect, this)
     @model.on('save', @rerenderJobProspect, this)
+    $(@el).attr('id', @model.get('id'))
 
   render: ->
     $(@el).html(@template(job_prospect: @model))
