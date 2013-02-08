@@ -8,6 +8,8 @@ JobOrg::Application.routes.draw do
     resources :job_prospects
   end
 
+  resources :documents
+
   resources :job_prospects do
     resources :events
   end

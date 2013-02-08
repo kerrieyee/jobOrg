@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe User do
-	subject{Fabricate(:user)}
-
   [:name, :password, :email].each do |field|
   	it {should validate_presence_of field}
   end
