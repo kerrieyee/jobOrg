@@ -19,13 +19,14 @@ class EventsController < ApplicationController
 
 	def new
 		@event = Event.new
+		@event.documents.build
 	end
 
 	def create
 		job_prospect = {:job_prospect => JobProspect.find(params[:job_prospect_id])}
-		@event = Event.create(params[:event].merge(job_prospect))
-		@event.job_prospect.last_updated = Time.now
-		@event.job_prospect.save
+		@event = Event.new(params[:event].merge(job_prospect))
+		@event.update_job_prospect
+		
 		if @event.save
 			flash[:success] = "Your event has been saved."
 			redirect_to job_prospect_events_path
@@ -48,8 +49,8 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 		job_prospect = {:job_prospect => @event.job_prospect}
-		@event.job_prospect.last_updated = Time.now
-		@event.job_prospect.save
+		@event.update_job_prospect
+		
 	  if @event.update_attributes(params[:event].merge(job_prospect))
 	  	flash[:success] = "Your event has been successfully updated!"
 	   	redirect_to job_prospect_events_path(@event.job_prospect)

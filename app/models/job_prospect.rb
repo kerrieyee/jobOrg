@@ -7,11 +7,10 @@ class JobProspect < ActiveRecord::Base
 
   belongs_to :user
   has_many :events, :dependent => :destroy
-
   
+  private
 
   def set_last_updated_to_now
     self.last_updated = Time.now
   end
-
 end

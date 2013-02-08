@@ -16,6 +16,7 @@
 	<%=f.text_field :conversation_type%>
 	<%=f.label :notes%>
 	<%=f.text_area :notes, :class => "span5", :rows => 5%><br/>
+		<%=render "documents/file_form", :f => f%>
 	<%=f.submit :class => "btn btn-info"%>
 <%end%>
 </div>
