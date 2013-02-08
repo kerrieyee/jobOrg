@@ -5,7 +5,7 @@ class JobOrg.Views.JobProspect extends Backbone.View
   id: 'id'
 
   events:
-    'click input[value="Delete"]': 'removeJobProspect'
+    'click .delete_job_prospect': 'removeJobProspect'
     'click input[value="Edit"]': 'editJobProspect'
 
   initialize: ->
