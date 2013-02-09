@@ -1,24 +1,28 @@
 <div class="span6 offset2" id="eventform">
-<%= form_for [:job_prospect, @event] do |f|%>
-	<%=f.label :contact%>
-	<%=f.text_field :contact%>
-	<%=f.label :contact_info, "Contact Info or Address"%>
-	<%=f.text_field :contact_info%>
-	<%=f.label :conversation_date, "Date"%>
-	<%= f.date_select(:conversation_date, 
-										options = { order: [:month, :day, :year], 
-																prompt: { month: 'Month', day: 'Day', year: 'Year' }, 
-										start_year: 2011 }, 
-										html_options = { size: 1, :class=>"span2" }) %>
-	<%=f.label :conversation_time, "Time"%>
-	<%=f.time_select(:conversation_time, {:prompt => {hour: 'Hour', minute: 'Minute'}, :ampm => true}, {size: 1, :class=>"span2"})%>
-	<%=f.label :conversation_type %>
-	<%=f.text_field :conversation_type%>
-	<%=f.label :notes%>
-	<%=f.text_area :notes, :class => "span5", :rows => 5%><br/>
-		<%=render "documents/file_form", :f => f%>
-	<%=f.submit :class => "btn btn-info"%>
-<%end%>
+	<%= form_for [:job_prospect, @event], :html => { :multipart => true } do |f|%>
+		<%=f.label :contact%>
+		<%=f.text_field :contact%>
+		<%=f.label :contact_info, "Contact Info or Address"%>
+		<%=f.text_field :contact_info%>
+		<%=f.label :conversation_date, "Date"%>
+		<%= f.date_select(:conversation_date, 
+											options = { order: [:month, :day, :year], 
+																	prompt: { month: 'Month', 
+																	day: 'Day', year: 'Year' }, 
+																	start_year: 2011 }, 
+											html_options = { size: 1, :class=>"span2" }) %>
+		<%=f.label :conversation_time, "Time"%>
+		<%=f.time_select(:conversation_time, {:prompt => {hour: 'Hour', minute: 'Minute'}, 
+																											:ampm => true}, 
+																				{size: 1, :class=>"span2"})%>
+		<%=f.label :conversation_type %>
+		<%=f.text_field :conversation_type%>
+		<%=f.label :notes%>
+		<%=f.text_area :notes, :class => "span5", :rows => 5%><br/>
+		<%= link_to "Add File", new_document_path, :class => "add_file btn btn-small", remote: true%>
+		<%=render "documents/new", :f => f%>
+		<%=f.submit :class => "btn btn-info"%>
+	<%end%>
 </div>
 
 

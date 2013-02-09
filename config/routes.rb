@@ -16,7 +16,6 @@ JobOrg::Application.routes.draw do
 
   match '/events' => 'events#all_events', :as => :all_events
 
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

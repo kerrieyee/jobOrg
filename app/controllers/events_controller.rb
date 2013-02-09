@@ -18,10 +18,10 @@ class EventsController < ApplicationController
 
 	def new
 		@event = Event.new
-		@event.documents.build
 	end
 
 	def create
+		documents = params[:documents]
 		job_prospect = {:job_prospect => JobProspect.find(params[:job_prospect_id])}
 		@event = Event.new(params[:event].merge(job_prospect))
 		
@@ -45,8 +45,12 @@ class EventsController < ApplicationController
 	end
 
 	def update
+		documents = params[:event][:documents]
 		@event = Event.find(params[:id])
 		job_prospect = {:job_prospect => @event.job_prospect}
+		documents.each do |doc| 
+			a = Document.create(:file => doc, :event => @event)
+		end
 		
 	  if @event.update_attributes(params[:event].merge(job_prospect))
 	  	flash[:success] = "Your event has been successfully updated!"
@@ -63,8 +67,8 @@ class EventsController < ApplicationController
 		@event.destroy
 
 		respond_to do |format|
-			format.html{redirect_to job_prospect_events_path(job_prospect)}
 			format.js
+			format.html{redirect_to job_prospect_events_path(job_prospect)}
 		end
 	end
 
