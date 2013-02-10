@@ -45,11 +45,13 @@ class EventsController < ApplicationController
 	end
 
 	def update
-		documents = params[:event][:documents]
+		documents = params[:document]
 		@event = Event.find(params[:id])
 		job_prospect = {:job_prospect => @event.job_prospect}
-		documents.each do |doc| 
-			a = Document.create(:file => doc, :event => @event)
+		if documents.length>0
+			documents.each do |doc| 
+				a = Document.create(:file => doc, :event => @event)
+			end
 		end
 		
 	  if @event.update_attributes(params[:event].merge(job_prospect))

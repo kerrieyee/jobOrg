@@ -19,8 +19,13 @@
 		<%=f.text_field :conversation_type%>
 		<%=f.label :notes%>
 		<%=f.text_area :notes, :class => "span5", :rows => 5%><br/>
+		<% if @event.documents%>
+			<%@event.documents.each do |doc|%>
+				<%=doc.file_file_name%><br/>
+			<%end%>
+		<%end%>
+
 		<%= link_to "Add File", new_document_path, :class => "add_file btn btn-small", remote: true%>
-		<%=render "documents/new", :f => f%>
 		<%=f.submit :class => "btn btn-info"%>
 	<%end%>
 </div>

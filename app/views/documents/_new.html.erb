@@ -1,6 +1,6 @@
 <div id="file_form">
 	<%= fields_for Document.new, :html => { :multipart => true } do |d| %>
 	<%= d.label :file, 'Choose a file:'%>
-	<%= d.file_field :file, :name=>"event[documents][]"%>
+	<%= d.file_field :file, :name => "document[]"%>
 	<% end %>
 </div>

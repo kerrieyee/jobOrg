@@ -19,7 +19,9 @@ class JobOrg.Views.JobProspect extends Backbone.View
 
   removeJobProspect: (event, job_prospect) ->
     event.preventDefault
-    if confirm("Are you sure you want to delete this Job Prospect? It will erase all corresponding events.") then @model.destroy() 
+    if confirm("Are you sure you want to delete this Job Prospect? It will erase all corresponding events.")
+      @model.destroy()
+      $() 
 
   editJobProspect: (event, job_prospect) ->
     event.preventDefault()

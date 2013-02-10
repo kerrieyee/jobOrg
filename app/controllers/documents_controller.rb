@@ -6,7 +6,6 @@ class DocumentsController < ApplicationController
 	def new
 		respond_to do |format| 
 			format.js
-			format.html { render :action => "new" } 
 		end
 	end
 
