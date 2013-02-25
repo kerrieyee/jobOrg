@@ -10,7 +10,9 @@ MVP: http://joborg.herokuapp.com
   *add a show page for events
   *set-up email confirmations in devise
   *speed-up the test suite and add controller/helper tests
-  *add paperclip(will allow people to keep track which resume and cover letter was sent to which company)
   *allow sorting in job prospect columns as well as event columns
+  *have delete funcionality for added files
+==Completed
+  x add paperclip(will allow people to keep track which resume and cover letter was sent to which company)
   
 
