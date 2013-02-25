@@ -11,7 +11,6 @@ class EventsController < ApplicationController
                            :per_page   => 8,
                            :order      => 'conversation_date DESC',
                            :conditions => { :job_prospect_id => @job_prospect.id })
-			#@events = Event.where(:job_prospect_id => @job_prospect.id).order("conversation_date")
 		else
 			redirect_unauthorized_user
 		end
@@ -22,15 +21,19 @@ class EventsController < ApplicationController
 	end
 
 	def create
+		documents = params[:document]
 		job_prospect = {:job_prospect => JobProspect.find(params[:job_prospect_id])}
-		@event = Event.create(params[:event].merge(job_prospect))
-		@event.job_prospect.last_updated = Time.now
-		@event.job_prospect.save
+		@event = Event.new(params[:event].merge(job_prospect))
+		if documents.length>0
+			documents.each { |doc| Document.create(:file => doc, :event => @event) }
+		end
+		
+
 		if @event.save
 			flash[:success] = "Your event has been saved."
 			redirect_to job_prospect_events_path
 		else
-			flash.now[:error] = "Invalid event.  #{display_errors(@event)}"
+			flash.now[:error] = "Invalid event.  #{@event.display_errors}."
 			render "new"
 		end
 	end
@@ -46,15 +49,18 @@ class EventsController < ApplicationController
 	end
 
 	def update
+		documents = params[:document]
 		@event = Event.find(params[:id])
 		job_prospect = {:job_prospect => @event.job_prospect}
-		@event.job_prospect.last_updated = Time.now
-		@event.job_prospect.save
+		if documents.length>0
+			documents.each { |doc| Document.create(:file => doc, :event => @event) }
+		end
+		
 	  if @event.update_attributes(params[:event].merge(job_prospect))
 	  	flash[:success] = "Your event has been successfully updated!"
 	   	redirect_to job_prospect_events_path(@event.job_prospect)
 	 	else
-	 		flash.now[:error] = "Invalid event.  #{display_errors(@event)}"
+	 		flash.now[:error] = "Invalid event.  #{@event.display_errors}."
 	 		render "edit"
     end
   end
@@ -63,25 +69,21 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		job_prospect = @event.job_prospect
 		@event.destroy
+
 		respond_to do |format|
-			format.html{redirect_to job_prospect_events_path(job_prospect)}
 			format.js
+			format.html{redirect_to job_prospect_events_path(job_prospect)}
 		end
 	end
 
 	def all_events
-		#need to fix very inefficient
-		@collection_events = []
-		Event.all.each{ |event|  @collection_events<<event if correct_user?(event.job_prospect.user, current_user) }
-		@events = @collection_events.paginate(:page       => params[:page],
-                           :per_page   => 8,
-                           :order      => 'conversation_date DESC')
+		@events = Event.all_events(current_user)
+		@page_events = @events.paginate(	:page       => params[:page],
+                           						:per_page   => 8,
+                           						:order      => 'conversation_date DESC')
 	end
 
 	private
-	def display_errors(object)
-		object.errors.full_messages.join(". ")
-	end
 
 	def authorize_user(event)
 		correct_user?(event.job_prospect.user, current_user) ? @event = event : redirect_unauthorized_user

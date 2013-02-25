@@ -8,12 +8,13 @@ JobOrg::Application.routes.draw do
     resources :job_prospects
   end
 
+  resources :documents
+
   resources :job_prospects do
     resources :events
   end
 
   match '/events' => 'events#all_events', :as => :all_events
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

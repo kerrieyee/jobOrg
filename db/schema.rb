@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205064309) do
+ActiveRecord::Schema.define(:version => 20130207221400) do
+
+  create_table "documents", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "event_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "documents", ["event_id"], :name => "index_documents_on_event_id"
 
   create_table "events", :force => true do |t|
     t.string   "contact"

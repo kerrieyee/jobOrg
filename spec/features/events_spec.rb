@@ -83,7 +83,6 @@ describe "Events", js: true do
 				job_prospect = JobProspect.create(company: "alltech", user: event.job_prospect.user)
 				event_one_two = Event.create(contact: "harry", conversation_date: Date.today, contact_info: "111 st", job_prospect: job_prospect)
 				visit all_events_path
-				debugger
 				page.should have_content("harry")
 				page.should have_content(event.contact) 
 				page.should_not have_content(event2.contact_info)
