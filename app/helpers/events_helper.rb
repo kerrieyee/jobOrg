@@ -25,9 +25,9 @@ module EventsHelper
 		"#{month}/#{day}/#{year.to_s[2..3]}"
 	end
 
-	def notes(note)
-	  if note 
-	 		note.length > 75 ? "#{note[0..74]}..." : note 
+	def file_name(doc)
+	  if doc 
+	 		doc.file_file_name.length > 15 ? "#{doc.file_file_name[0..15]}..." : doc.file_file_name.length
 		end
 		#need to find a better way for this
 	end

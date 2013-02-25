@@ -5,24 +5,24 @@ class JobOrg.Views.JobProspect extends Backbone.View
   id: 'id'
 
   events:
-    # 'click input[value="Delete"]': 'removeJobProspect'
+    'click .delete_job_prospect': 'removeJobProspect'
     'click input[value="Edit"]': 'editJobProspect'
 
   initialize: ->
-    # @model.on('destroy', @unrenderJobProspect, this)
+    @model.on('destroy', @unrenderJobProspect, this)
     @model.on('save', @rerenderJobProspect, this)
     $(@el).attr('id', @model.get('id'))
 
   render: ->
     $(@el).html(@template(job_prospect: @model))
     this
-
-  # removeJobProspect: (event, job_prospect) ->
-  #   event.preventDefault
-  #   if confirm("Are you sure you want to delete this Job Prospect? It will erase all corresponding events.")
-  #     $('.alert').hide()
-  #     $('.alert-success').text("Your Job Prospect has been successfully deleted.").show()
-  #     @model.destroy()
+ 
+  removeJobProspect: (event, job_prospect) ->
+    event.preventDefault
+    if confirm("Are you sure you want to delete this Job Prospect? It will erase all corresponding events.")
+      $('.alert').hide()
+      $('.alert-success').text("Your Job Prospect has been successfully deleted.").show()
+      @model.destroy()
 
   editJobProspect: (event, job_prospect) ->
     event.preventDefault()
@@ -44,9 +44,9 @@ class JobOrg.Views.JobProspect extends Backbone.View
     $(@el).html(@template(job_prospect: @model))
     this
 
-  # unrenderJobProspect: ->
-  #   alert("hi")
-  #   $('.alert').hide()
-  #   $('.alert-success').text("Your Job Prospect has been successfully deleted.").show()
-  #   $(@el).remove()
+  unrenderJobProspect: ->
+    alert("hi")
+    $('.alert').hide()
+    $('.alert-success').text("Your Job Prospect has been successfully deleted.").show()
+    $(@el).remove()
     
