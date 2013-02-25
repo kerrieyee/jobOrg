@@ -21,10 +21,14 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		documents = params[:documents]
+		documents = params[:document]
 		job_prospect = {:job_prospect => JobProspect.find(params[:job_prospect_id])}
 		@event = Event.new(params[:event].merge(job_prospect))
+		if documents.length>0
+			documents.each { |doc| Document.create(:file => doc, :event => @event) }
+		end
 		
+
 		if @event.save
 			flash[:success] = "Your event has been saved."
 			redirect_to job_prospect_events_path
@@ -49,9 +53,7 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		job_prospect = {:job_prospect => @event.job_prospect}
 		if documents.length>0
-			documents.each do |doc| 
-				a = Document.create(:file => doc, :event => @event)
-			end
+			documents.each { |doc| Document.create(:file => doc, :event => @event) }
 		end
 		
 	  if @event.update_attributes(params[:event].merge(job_prospect))
