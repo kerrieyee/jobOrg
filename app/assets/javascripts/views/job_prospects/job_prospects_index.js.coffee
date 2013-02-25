@@ -29,11 +29,9 @@ class JobOrg.Views.JobProspectsIndex extends Backbone.View
       wait: true
       success: ->
         $('#new_job_prospect')[0].reset()
+        $('.alert').hide()
         $('.alert-success').text "Your job prospect has been successfully created."
-        $('.alert-error').hide()
         $('.alert-success').show()
-        $('.alert-warning').hide()
-        $('.alert-notice').hide()
       error: @handleError
   
   updateJobProspect: (event, job_prospect) ->
@@ -49,11 +47,8 @@ class JobOrg.Views.JobProspectsIndex extends Backbone.View
         $('#edit_job_prospect')[0].reset()
         $('#edit_job_prospect').hide()
         $('#new_job_prospect').show()
-        $('.alert-success').text "Your job prospect has been successfully updated."
-        $('.alert-error').hide()
-        $('.alert-success').show()
-        $('.alert-warning').hide()
-        $('.alert-notice').hide()
+        $('.alert').hide()
+        $('.alert-success').text("Your job prospect has been successfully updated.").show()
         editJob.trigger("save")
       error: @handleError
 
@@ -62,10 +57,6 @@ class JobOrg.Views.JobProspectsIndex extends Backbone.View
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
         for message in messages
+          $('.alert').hide()
           $('.alert-error').text("#{attribute} #{message}.")
           $('.alert-error').show()
-          $('.alert-success').hide()
-          $('.alert-warning').hide()
-          $('.alert-notice').hide()
-      
-      
